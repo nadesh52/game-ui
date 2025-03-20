@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+  --animate-fade-in-left: fade-in-from-left 0.5s ease-in-out;
+  --animate-fade-in-right: fade-in-from-right 0.5s ease-in-out;
+  --animate-fade-in-top: fade-in-from-top 0.5s ease-in-out;
+  --color-primary-text: #c9744d;
+  --color-background: #0F0402;
+
+  @keyframes fade-in-from-left {
+    0% {
+      opacity: 0;
+      transform: translateX(-300px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  @keyframes fade-in-from-right {
+    0% {
+      opacity: 0;
+      transform: translateX(300px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  @keyframes fade-in-from-top {
+    0% {
+      opacity: 0;
+      transform: translateY(300px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@layer components {
+  .btn {
+    @apply cursor-pointer hover:shadow-[0px_8px_15px_rgba(236,136,57,0.5)];
+  }
+}
