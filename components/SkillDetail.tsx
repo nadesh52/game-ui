@@ -1,11 +1,17 @@
 import Image from "next/image";
 import React from "react";
+import { ASSET_PREFIX } from "@/constants";
 
 const SkillDetail = ({ skill }: any) => {
   return (
     <div className="flex flex-col">
       <div className="mb-2 flex flex-row gap-4 font-medium">
-        <Image src={skill.icon} width={28} height={24} alt="skill-icon" />
+        <Image
+          src={`${ASSET_PREFIX}/${skill.icon}`}
+          width={28}
+          height={24}
+          alt="skill-icon"
+        />
         <p>{skill.name}</p>
       </div>
       {skill.prerequisite_skills && (

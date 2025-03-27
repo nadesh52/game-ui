@@ -1,11 +1,12 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
-import { iniClass, jobList } from "@/constants";
+import { iniClass, jobList } from "@/constants/jobList";
 import Modal from "./Modal";
+import { ASSET_PREFIX } from "@/constants";
 
 const CharacterDetail = () => {
-  const [selectedClass, setSelectedClass] = useState<any>(iniClass);
+  const [selectedClass, setSelectedClass] = useState(iniClass);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedAction, setSelectedAction] = useState("");
 
@@ -32,9 +33,9 @@ const CharacterDetail = () => {
 
   return (
     <section className="relative mx-auto w-[864px] pb-20">
-      <div className="mt-10 flex justify-center pointer-events-none select-none">
+      <div className="pointer-events-none mt-10 flex justify-center select-none">
         <Image
-          src="/assets/images/logo-class.png"
+          src={`${ASSET_PREFIX}/assets/images/logo-class.png`}
           width={518}
           height={300}
           alt="logo"
@@ -49,7 +50,12 @@ const CharacterDetail = () => {
               selectedClass.id === job.id ? "scale-110" : "grayscale-[80%]"
             }`}
           >
-            <Image src={job.frame} width={64} height={64} alt="jobs" />
+            <Image
+              src={`${ASSET_PREFIX}/${job.frame}`}
+              width={64}
+              height={64}
+              alt="jobs"
+            />
           </button>
         ))}
       </div>
@@ -60,42 +66,54 @@ const CharacterDetail = () => {
           className="animate-fade-in-top relative z-20"
           key={selectedClass.id}
         >
-          <div className="flex flex-row items-center">
+          <div className="flex flex-row items-center gap-4">
             {/* Previous Button */}
-            <button onClick={handlePrevious} className="btn order-1 h-fit">
-              Back
-            </button>
+              <Image onClick={handlePrevious}
+                src={`${ASSET_PREFIX}/assets/images/arrow-left.png`}
+                width={32}
+                height={64}
+                alt="arrow"
+                draggable={false}
+                className="btn order-1 h-fit"
+              />
 
             {/* Next Button */}
-            <button onClick={handleNext} className="btn order-3 h-fit">
-              Next
-            </button>
+              <Image onClick={handleNext}
+                src={`${ASSET_PREFIX}/assets/images/arrow-right.png`}
+                width={32}
+                height={64}
+                alt="arrow"
+                draggable={false}
+                className="btn z-40 order-3 h-fit"
+              />
 
             <Image
-              src={selectedClass.description}
+              src={`${ASSET_PREFIX}/${selectedClass.description}`}
               width={864}
               height={600}
               alt="character"
-              className="relative z-20 order-2 shadow-md"
+              className="pointer-events-none relative z-20 order-2 shadow-md select-none"
             />
           </div>
 
           {/* Buttons */}
-          <div className="mt-10 flex flex-row items-center justify-around">
+          <div className="mt-10 flex flex-row items-center justify-around select-none">
             <button onClick={() => openModal("skill")} className="btn">
               <Image
-                src="/assets/images/skill-btn.png"
+                src={`${ASSET_PREFIX}/assets/images/skill-btn.png`}
                 width={240}
                 height={87}
                 alt="btn"
+                draggable={false}
               />
             </button>
             <button onClick={() => openModal("quest")} className="btn">
               <Image
-                src="/assets/images/quest-btn.png"
+                src={`${ASSET_PREFIX}/assets/images/quest-btn.png`}
                 width={240}
                 height={87}
                 alt="btn"
+                draggable={false}
               />
             </button>
           </div>
@@ -105,19 +123,19 @@ const CharacterDetail = () => {
         <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
           <Image
             key={`${selectedClass.id}-male`} // Forces re-render
-            src={selectedClass.male}
+            src={`${ASSET_PREFIX}/${selectedClass.male}`}
             width={736}
             height={800}
             alt="jobs"
-            className="animate-fade-in-left absolute top-[-120px] left-[-450px]"
+            className="animate-fade-in-left absolute top-[-120px] left-[-380px]"
           />
           <Image
             key={`${selectedClass.id}-female`} // Forces re-render
-            src={selectedClass.female}
+            src={`${ASSET_PREFIX}/${selectedClass.female}`}
             width={736}
             height={800}
             alt="jobs"
-            className="animate-fade-in-right absolute top-[-120px] right-[-450px]"
+            className="animate-fade-in-right absolute top-[-120px] right-[-500px]"
           />
         </div>
       </div>

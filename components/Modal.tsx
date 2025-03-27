@@ -69,7 +69,7 @@ const Modal = ({ isOpen, onClose, action, job }: ModalProps) => {
             <p className="mb-2 text-xs text-red-500">
               *some of skills (not all)
             </p>
-            <div className="space-y-4 divide-y-2 divide-orange-200 text-gray-700">
+            <div className="space-y-4 divide-y-2 divide-gray-200 text-gray-700">
               {jobInfo.skills.map((skill: any, idx: any) => (
                 <SkillDetail key={idx} skill={skill} />
               ))}
